@@ -1,6 +1,6 @@
 # SAP ABAP send email using eMail Templates with or without CDS
 ##  1.	Create E-Mail Template
-  ![image](https://user-images.githubusercontent.com/28149363/147462319-95f63fb5-b8c7-4c3c-9f5a-1756f6b4a90b.png)
+  ![image](https://user-images.githubusercontent.com/28149363/147467514-c82fdba0-99b3-40f8-b760-3dd5b9f33173.png)
 
   ![image](https://user-images.githubusercontent.com/28149363/147462388-06d0f6af-719b-4743-a4c4-69bdbc3ae2a2.png)
 
