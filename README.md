@@ -11,7 +11,7 @@
 
     2.1.	METHODS SET_BODY_SO10 " get Email body from so10 text.
 
-    2.2.	METHODS SET_PLACEHOLDER
+    2.2.	METHODS SET_PLACEHOLDER " set dynamic variable to be replaced in email to body
 
     2.3.	METHODS replace_placeholder " replace placehoder for non cds email template
 
