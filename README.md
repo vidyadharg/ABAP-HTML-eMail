@@ -72,11 +72,15 @@
 
 ```
 REPORT zdemo_email.
-"send email with HTML email body using email template
+"send email with HTML body using email template
+
 TRY.
     DATA(email) = NEW zcl_email( ).
+    data lv_expiry_dt TYPE dats.
 
-    DATA(lv_days) = ls_user-expiry_dt - sy-datum.
+    lv_expiry_dt  = sy-datum + 10. "add logic to get user id expiry date
+
+    DATA(lv_days) = lv_expiry_dt - sy-datum.
 
     email->add_recipient( iv_address = CONV #( 'recipient@emailid.com' ) ).
 
@@ -84,28 +88,29 @@ TRY.
 
     email->set_placeholder(
       EXPORTING
-        iv_placeholder_name  = '&USER_FIRST_NAME&'
-        iv_placeholder_value =  CONV #( ls_userlist-user_first_name ) ).
+        placeholder_name  = '&USER_FIRST_NAME&'
+        placeholder_value =  CONV #( 'User firstname' ) ).
 
     email->set_placeholder(
       EXPORTING
-        iv_placeholder_name  = '&USER_ID&'
-        iv_placeholder_value = CONV #( ls_userlist-user_id ) ).
+        placeholder_name  = '&USER_ID&'
+        placeholder_value = CONV #( 'user_id' ) ).
+
 
     email->set_placeholder(
       EXPORTING
-        iv_placeholder_name  =  '&EXPIRY_DT&'
-        iv_placeholder_value =  |{ ls_userlist-expiry_dt DATE = ISO }| ).
+        placeholder_name  =  '&EXPIRY_DT&'
+        placeholder_value =  |{ lv_expiry_dt DATE = ISO }| ).
 
     email->set_placeholder(
       EXPORTING
-        iv_placeholder_name  =  '&DAYS&'
-        iv_placeholder_value =  CONV #( lv_days ) ).
+        placeholder_name  =  '&DAYS&'
+        placeholder_value =  CONV #( lv_days ) ).
 
-    email->set_sub_body_template(
+    email->set_subject_body_template(
       EXPORTING
-        iv_template_id = 'ZET_USR_VALID_EXPIRE' "Email body for Report ZGRCR_USR_VALID_EXPIRE
-        iv_doctype      = 'HTM' ).
+        template_id = 'ZET_DEMO' "Email body from Email template
+        doctype      = 'HTM' ).
 
     email->set_send_immediately( abap_false ).
     email->send( ).
@@ -113,7 +118,6 @@ TRY.
   CATCH cx_bcs_send INTO DATA(ex).
     MESSAGE ex->get_text( ) TYPE 'S'.
 ENDTRY.
-
 ```
 
 ##  4.	SOST email preview
