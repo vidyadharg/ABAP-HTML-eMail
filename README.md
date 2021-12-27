@@ -69,3 +69,53 @@
     ```
 
 ##  3.	Demo program  
+
+```
+REPORT zdemo_email.
+"send email with HTML email body using email template
+TRY.
+    DATA(email) = NEW zcl_email( ).
+
+    DATA(lv_days) = ls_user-expiry_dt - sy-datum.
+
+    email->add_recipient( iv_address = CONV #( 'recipient@emailid.com' ) ).
+
+    email->set_sender( iv_address = 'do@not.reply' iv_visible_name = 'Do not reply ' ).
+
+    email->set_placeholder(
+      EXPORTING
+        iv_placeholder_name  = '&USER_FIRST_NAME&'
+        iv_placeholder_value =  CONV #( ls_userlist-user_first_name ) ).
+
+    email->set_placeholder(
+      EXPORTING
+        iv_placeholder_name  = '&USER_ID&'
+        iv_placeholder_value = CONV #( ls_userlist-user_id ) ).
+
+    email->set_placeholder(
+      EXPORTING
+        iv_placeholder_name  =  '&EXPIRY_DT&'
+        iv_placeholder_value =  |{ ls_userlist-expiry_dt DATE = ISO }| ).
+
+    email->set_placeholder(
+      EXPORTING
+        iv_placeholder_name  =  '&DAYS&'
+        iv_placeholder_value =  CONV #( lv_days ) ).
+
+    email->set_sub_body_template(
+      EXPORTING
+        iv_template_id = 'ZET_USR_VALID_EXPIRE' "Email body for Report ZGRCR_USR_VALID_EXPIRE
+        iv_doctype      = 'HTM' ).
+
+    email->set_send_immediately( abap_false ).
+    email->send( ).
+
+  CATCH cx_bcs_send INTO DATA(ex).
+    MESSAGE ex->get_text( ) TYPE 'S'.
+ENDTRY.
+
+```
+
+##  4.	SOST email preview
+![image](https://user-images.githubusercontent.com/28149363/147467306-71169842-3552-40bd-a167-f65675e1c5bd.png)
+
