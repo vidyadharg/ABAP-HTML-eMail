@@ -16,7 +16,7 @@
      <CLSNAME>ZCL_EMAIL</CLSNAME>
      <CMPNAME>ADD_DL_RECIPIENTS</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>add recipient from SAP DL</DESCRIPT>
+     <DESCRIPT>Add recipient email id from SAP DL</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZCL_EMAIL</CLSNAME>
@@ -28,7 +28,7 @@
      <CLSNAME>ZCL_EMAIL</CLSNAME>
      <CMPNAME>REPLACE_PLACEHOLDER</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>replace placeholder than CDS</DESCRIPT>
+     <DESCRIPT>Replace placeholder than CDS</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZCL_EMAIL</CLSNAME>
@@ -44,9 +44,15 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZCL_EMAIL</CLSNAME>
+     <CMPNAME>SET_PLACEHOLDER_ITAB</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>set placeholder internal table</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_EMAIL</CLSNAME>
      <CMPNAME>SET_SUBJECT_BODY_TEMPLATE</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>set email subject and body from Email Template</DESCRIPT>
+     <DESCRIPT>set email body and subject from email Template id</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>
