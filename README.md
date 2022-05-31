@@ -14,10 +14,12 @@
     2.2.	METHODS SET_PLACEHOLDER " set dynamic variable to be replaced in email to body
 
     2.3.	METHODS replace_placeholder " replace placehoder for non cds email template
+    
+    2.4.	METHODS SET_PLACEHOLDER_ITAB " replace Itab  placehoder for non cds email template
 
-    2.4.	METHODS SET_SUB_BODY_TEMPLATE "read email body from email template
+    2.5.	METHODS SET_SUB_BODY_TEMPLATE "read email body from email template
 
-      "2.4.1.	Dont pass place holders when Email teplate created without CDS.
+      "2.5.1.	Dont pass place holders when Email teplate created without CDS.
 
       SELECT SINGLE cds_view FROM smtg_tmpl_hdr
               INTO @DATA(lv_cds_view)
@@ -28,7 +30,7 @@
                 DATA(lt_data_key) = gt_data_key.
               ENDIF.
 
-      "2.4.2.	Read email template in HTML or Text.
+      "2.5.2.	Read email template in HTML or Text.
         TRY.
             DATA(lo_email_api) = cl_smtg_email_api=>get_instance( iv_template_id = iv_template_id ).
 
@@ -44,7 +46,7 @@
           CATCH cx_smtg_email_common INTO DATA(ex). " E-Mail API Exceptions
         ENDTRY. 
 
-      "2.4.3.	Replace placehoder for non-cds email template
+      "2.5.3.	Replace placehoder for non-cds email template
 
           IF iv_doctype EQ 'HTM'.
             DATA(lv_mailbody) = lv_body_html.
@@ -57,7 +59,7 @@
             lv_subject = replace_placeholder( lv_subject ).
           ENDIF.
 
-      "2.4.4.	set subject and body using supper class CL_BCS_MESSAGE 
+      "2.5.4.	set subject and body using supper class CL_BCS_MESSAGE 
 
          set_subject( lv_subject ).
          
