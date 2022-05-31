@@ -78,6 +78,9 @@ TRY.
     DATA(email) = NEW zcl_email( ).
     data lv_expiry_dt TYPE dats.
 
+  select CARRID, CONNID, FLDATE, PRICE
+    UP TO 10 ROWS FROM SFLIGHT INTO TABLE @data(lt_SFLIGHT).
+
     lv_expiry_dt  = sy-datum + 10. "add logic to get user id expiry date
 
     DATA(lv_days) = lv_expiry_dt - sy-datum.
@@ -85,6 +88,13 @@ TRY.
     email->add_recipient( iv_address = CONV #( 'recipient@emailid.com' ) ).
 
     email->set_sender( iv_address = 'do@not.reply' iv_visible_name = 'Do not reply ' ).
+
+    "set internal table as html email body 
+    email->set_placeholder_itab(
+      EXPORTING
+        placeholder_name  = '&SFLIGHT_TAB&'
+        placeholder_itab = lt_SFLIGHT
+        table_Title =  'Flights Details').
 
     email->set_placeholder(
       EXPORTING
@@ -95,7 +105,6 @@ TRY.
       EXPORTING
         placeholder_name  = '&USER_ID&'
         placeholder_value = CONV #( 'user_id' ) ).
-
 
     email->set_placeholder(
       EXPORTING
@@ -121,5 +130,5 @@ ENDTRY.
 ```
 
 ##  4.	SOST email preview
-![image](https://user-images.githubusercontent.com/28149363/147467306-71169842-3552-40bd-a167-f65675e1c5bd.png)
+![image](https://user-images.githubusercontent.com/28149363/171145225-c1ecec38-1c57-4a1a-97c5-f7eb6e3ea58f.png)
 
