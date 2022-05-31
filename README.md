@@ -2,9 +2,9 @@
 ##  1.	Create E-Mail Template
   ![image](https://user-images.githubusercontent.com/28149363/147467514-c82fdba0-99b3-40f8-b760-3dd5b9f33173.png)
 
-  ![image](https://user-images.githubusercontent.com/28149363/147462388-06d0f6af-719b-4743-a4c4-69bdbc3ae2a2.png)
+![image](https://user-images.githubusercontent.com/28149363/171146686-18c41e2f-1d1a-466d-be1a-0b2e818f911f.png)
 
-  ![image](https://user-images.githubusercontent.com/28149363/147462415-02dc8b41-8c63-44ba-a7f1-70e0a8f6e6fb.png)
+![image](https://user-images.githubusercontent.com/28149363/171146887-5a05bbf1-44ca-4f1c-8a2b-9daeb7f3043a.png)
 
 
 ##  2.	Create class ZCL_EMAIL inheriting from CL_BCS_MESSAGE  
@@ -130,5 +130,6 @@ ENDTRY.
 ```
 
 ##  4.	SOST email preview
-![image](https://user-images.githubusercontent.com/28149363/171145225-c1ecec38-1c57-4a1a-97c5-f7eb6e3ea58f.png)
+![image](https://user-images.githubusercontent.com/28149363/171146985-1208eb8c-8204-4c30-875a-bbf3b5309ae9.png)
+
 
