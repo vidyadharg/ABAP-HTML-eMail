@@ -1,47 +1,48 @@
 "! <p class="shorttext synchronized" lang="en">Email</p>
-class ZCL_EMAIL definition
-  public
-  inheriting from CL_BCS_MESSAGE
-  final
-  create public .
+CLASS zcl_email DEFINITION
+  PUBLIC
+  INHERITING FROM cl_bcs_message
+  FINAL
+  CREATE PUBLIC.
 
-public section.
+  PUBLIC SECTION.
 
     "! <p class="shorttext synchronized" lang="en">set email body from so10 text</p>
-  methods SET_BODY_SO10
-    importing
-      !TEXT_NAME type TDOBNAME
-      !LANGUAGE type BCS_LANGUAGE default SY-LANGU
-      !DOCTYPE type BCS_DOCTYPE default 'txt'
-      !TDID type THEAD-TDID default 'ST'
-      !TDOBJECT type THEAD-TDOBJECT default 'TEXT' .
+    METHODS set_body_so10
+      IMPORTING
+        text_name TYPE tdobname
+        language  TYPE bcs_language DEFAULT sy-langu
+        doctype   TYPE bcs_doctype DEFAULT 'txt'
+        tdid      TYPE thead-tdid DEFAULT 'ST'
+        tdobject  TYPE thead-tdobject DEFAULT 'TEXT' .
     "! <p class="shorttext synchronized" lang="en">set email body and subject from email Template id</p>
-  methods SET_SUBJECT_BODY_TEMPLATE
-    importing
-      !TEMPLATE_ID type SMTG_TMPL_ID
-      !LANGUAGE type BCS_LANGUAGE default SY-LANGU
-      !DOCTYPE type BCS_DOCTYPE default 'txt' .
+    METHODS set_subject_body_template
+      IMPORTING
+        template_id TYPE smtg_tmpl_id
+        language    TYPE bcs_language DEFAULT sy-langu
+        doctype     TYPE bcs_doctype DEFAULT 'txt' .
     "! <p class="shorttext synchronized" lang="en">set placeholder</p>
-  methods SET_PLACEHOLDER
-    importing
-      !PLACEHOLDER_NAME type STRING
-      !PLACEHOLDER_VALUE type STRING .
+    METHODS set_placeholder
+      IMPORTING
+        placeholder_name  TYPE string
+        placeholder_value TYPE string .
     "! <p class="shorttext synchronized" lang="en">Add recipient email id from SAP DL</p>
-  methods ADD_DL_RECIPIENTS
-    importing
-      !DLINAM type SO_DLI_NAM
-      !SHARED_DLI type SO_TEXT001 default SPACE
-      !COPY type BCS_COPY optional .
+    METHODS add_dl_recipients
+      IMPORTING
+        dlinam     TYPE so_dli_nam
+        shared_dli TYPE so_text001 DEFAULT space
+        copy       TYPE bcs_copy OPTIONAL .
     "! <p class="shorttext synchronized" lang="en">validate email id</p>
-  class-methods IS_EMAILID_VALID
-    importing
-      !EMAILID type AD_SMTPADR
-    returning
-      value(IS_EMAILID_VALID) type ABAP_BOOL .
-  methods SET_PLACEHOLDER_ITAB
-    importing
-      !PLACEHOLDER_NAME type STRING
-      value(PLACEHOLDER_ITAB) type STANDARD TABLE .
+    CLASS-METHODS is_emailid_valid
+      IMPORTING
+        emailid                TYPE ad_smtpadr
+      RETURNING
+        VALUE(is_emailid_valid) TYPE abap_bool .
+    "! <p class="shorttext synchronized" lang="en">set Itab Placeholder</p>
+    METHODS set_placeholder_itab
+      IMPORTING
+        placeholder_name       TYPE string
+        VALUE(placeholder_itab) TYPE STANDARD TABLE .
   PROTECTED SECTION.
   PRIVATE SECTION.
 
@@ -57,7 +58,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_EMAIL IMPLEMENTATION.
+CLASS zcl_email IMPLEMENTATION.
 
 
   METHOD add_dl_recipients.

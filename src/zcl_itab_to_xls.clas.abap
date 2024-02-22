@@ -1,24 +1,25 @@
 "! <p class="shorttext synchronized" lang="en">Converts the internal table into excel_xml</p>
-class ZCL_ITAB_TO_XLS definition
-  public
-  create public .
+CLASS zcl_itab_to_xls DEFINITION
+  PUBLIC
+  CREATE PUBLIC.
 
-public section.
+  PUBLIC SECTION.
 
-  methods CONSTRUCTOR .
-  methods CONVERT
-    importing
-      !TBL type ANY TABLE
-      !ALV_DISVARIANT type DISVARIANT optional
-    returning
-      value(RET) type XSTRING .
+    METHODS constructor.
+
+    METHODS convert
+      IMPORTING
+        tbl            TYPE ANY TABLE
+        alv_disvariant TYPE disvariant OPTIONAL
+      RETURNING
+        VALUE(ret)      TYPE xstring.
   PROTECTED SECTION.
 
 ENDCLASS.
 
 
 
-CLASS ZCL_ITAB_TO_XLS IMPLEMENTATION.
+CLASS zcl_itab_to_xls IMPLEMENTATION.
 
 
   METHOD constructor.

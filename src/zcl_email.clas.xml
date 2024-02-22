@@ -195,7 +195,7 @@
     <SEOCOMPOTX>
      <CMPNAME>SET_PLACEHOLDER_ITAB</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>set placeholder internal table</DESCRIPT>
+     <DESCRIPT>set Itab Placeholder</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>SET_PLACEHOLDER_ITAB</CMPNAME>
