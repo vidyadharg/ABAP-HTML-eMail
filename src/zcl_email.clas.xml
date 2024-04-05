@@ -48,6 +48,16 @@
      <DESCRIPT>Add recipient email id from SAP DL</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>ADD_ZIP_ATTACHMENTS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>add ZIP attachments</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_DL_SHARED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>DL public or private</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>IS_EMAILID_VALID</CMPNAME>
      <LANGU>7</LANGU>
      <DESCRIPT>validate email id</DESCRIPT>
@@ -81,6 +91,11 @@
      <CMPNAME>IS_EMAILID_VALID</CMPNAME>
      <LANGU>뱋</LANGU>
      <DESCRIPT>validate email id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>READ_SO10_TEXT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>read so10 text</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>REPLACE_PLACEHOLDER</CMPNAME>
@@ -256,6 +271,11 @@
      <CMPNAME>SET_SUBJECT_BODY_TEMPLATE</CMPNAME>
      <LANGU>뱋</LANGU>
      <DESCRIPT>set email body and subject from email Template id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SET_SUBJECT_SO10</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>set email subject from so10 text</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
