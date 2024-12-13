@@ -44,7 +44,7 @@ CLASS zcl_spool_to_pdf IMPLEMENTATION.
     IF sy-subrc <> 0.
       zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
                                        iv_msgno    = 126
-                                       iv_msgv1    = conv #( spoolid ) ).
+                                       iv_msgv1    = CONV #( spoolid ) ).
     ENDIF.
 
 *   --- convert spool request into PDF, dependent on document type ---
@@ -74,8 +74,8 @@ CLASS zcl_spool_to_pdf IMPLEMENTATION.
       IF sy-subrc <> 0.
         zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
                                          iv_msgno    = 712
-                                         iv_msgv1    = conv #( sy-subrc )
-                                         iv_msgv2    = conv #( 'CONVERT_OTFSPOOLJOB_2_PDF' ) ).
+                                         iv_msgv1    = CONV #( sy-subrc )
+                                         iv_msgv2    = CONV #( 'CONVERT_OTFSPOOLJOB_2_PDF' ) ).
       ENDIF.
     ELSEIF rq-rqdoctype = 'LIST'.
       CALL FUNCTION 'CONVERT_ABAPSPOOLJOB_2_PDF'
@@ -103,13 +103,13 @@ CLASS zcl_spool_to_pdf IMPLEMENTATION.
       IF sy-subrc <> 0.
         zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
                                          iv_msgno    = 712
-                                         iv_msgv1    = conv #( sy-subrc )
-                                         iv_msgv2    = conv #( 'CONVERT_OTFSPOOLJOB_2_PDF' ) ).
+                                         iv_msgv1    = CONV #( sy-subrc )
+                                         iv_msgv2    = CONV #( 'CONVERT_OTFSPOOLJOB_2_PDF' ) ).
       ENDIF.
     ELSE.
         zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
                                          iv_msgno    = 789
-                                         iv_msgv1    = conv #( rq-rqdoctype ) ).
+                                         iv_msgv1    = CONV #( rq-rqdoctype ) ).
 
     ENDIF.
 
