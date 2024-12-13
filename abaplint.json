@@ -116,7 +116,7 @@
     "empty_structure": false,
     "form_tables_obsolete": true,
     "fully_type_constants": false,
-    "global_class": true,
+    "global_class": false,
     "identical_form_names": true,
     "if_in_if": false,
     "implement_methods": true,
