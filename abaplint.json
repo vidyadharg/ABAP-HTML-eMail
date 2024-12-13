@@ -141,13 +141,6 @@
     },
     "newline_between_methods": false,
     "no_public_attributes": false,
-    "object_naming": {
-      "clas": "^ZC(L|X)\\_EMAIL",
-      "intf": "^ZIF\\_EMAIL",
-      "tabl": "^ZEMAIL",
-      "ttyp": "^ZEMAIL",
-      "dtel": "^ZEMAIL"
-    },
     "prefer_returning_to_exporting": false,
     "preferred_compare_operator": false,
     "release_idoc": false,
