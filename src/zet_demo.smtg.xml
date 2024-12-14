@@ -1,368 +1,305 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_SMTG" serializer_version="v1.0.0">
- <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
-  <asx:values>
-   <SMTG>
-    <HEADER>
-     <ID>ZET_DEMO</ID>
-     <VERSION>A</VERSION>
-     <IS_PREDELIVERED>X</IS_PREDELIVERED>
-    </HEADER>
-    <HEADER_T>
-     <SMTG_TMPL_HDR_T>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>E</LANGU>
-      <NAME>||Flight details and air fare||</NAME>
-      <DESCRIPTION>||Flight details and air fare||</DESCRIPTION>
-     </SMTG_TMPL_HDR_T>
-    </HEADER_T>
-    <CONTENT>
-     <SMTG_TMPL_CONT>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>E</LANGU>
-      <SUBJECT>||Flight details and air fare||</SUBJECT>
-      <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
-
-  &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body style=&quot;background-color:gray&quot;&gt;
-  &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-        &lt;tr&gt; &lt;td&gt;
-        &amp;SFLIGHT_TAB&amp;
-        &lt;/td&gt; &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
-
-          &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
- &lt;/tbody&gt;
-   
-  &lt;/table&gt;
-&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</BODY_HTML>
-     </SMTG_TMPL_CONT>
-     <SMTG_TMPL_CONT>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>W</LANGU>
-      <SUBJECT>||Flight details and air fare||</SUBJECT>
-      <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
-
-  &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body style=&quot;background-color:gray&quot;&gt;
-  &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-        &lt;tr&gt; &lt;td&gt;
-        &amp;SFLIGHT_TAB&amp;
-        &lt;/td&gt; &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
-
-          &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
- &lt;/tbody&gt;
-   
-  &lt;/table&gt;
-&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</BODY_HTML>
-     </SMTG_TMPL_CONT>
-     <SMTG_TMPL_CONT>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>묩</LANGU>
-      <SUBJECT>||Flight details and air fare||</SUBJECT>
-      <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
-
-  &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body style=&quot;background-color:gray&quot;&gt;
-  &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-        &lt;tr&gt; &lt;td&gt;
-        &amp;SFLIGHT_TAB&amp;
-        &lt;/td&gt; &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
-
-          &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
- &lt;/tbody&gt;
-   
-  &lt;/table&gt;
-&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</BODY_HTML>
-     </SMTG_TMPL_CONT>
-     <SMTG_TMPL_CONT>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>뱋</LANGU>
-      <SUBJECT>||Flight details and air fare||</SUBJECT>
-      <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
-
-  &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body style=&quot;background-color:gray&quot;&gt;
-  &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-        &lt;tr&gt; &lt;td&gt;
-        &amp;SFLIGHT_TAB&amp;
-        &lt;/td&gt; &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
-
-          &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
- &lt;/tbody&gt;
-   
-  &lt;/table&gt;
-&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</BODY_HTML>
-     </SMTG_TMPL_CONT>
-     <SMTG_TMPL_CONT>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>Z</LANGU>
-      <SUBJECT>||Flight details and air fare||</SUBJECT>
-      <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
-
-  &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body style=&quot;background-color:gray&quot;&gt;
-  &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-        &lt;tr&gt; &lt;td&gt;
-        &amp;SFLIGHT_TAB&amp;
-        &lt;/td&gt; &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
-
-          &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
- &lt;/tbody&gt;
-   
-  &lt;/table&gt;
-&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</BODY_HTML>
-     </SMTG_TMPL_CONT>
-     <SMTG_TMPL_CONT>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>7</LANGU>
-      <SUBJECT>||Flight details and air fare||</SUBJECT>
-      <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
-
-  &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body style=&quot;background-color:gray&quot;&gt;
-  &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-        &lt;tr&gt; &lt;td&gt;
-        &amp;SFLIGHT_TAB&amp;
-        &lt;/td&gt; &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
-
-          &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
- &lt;/tbody&gt;
-   
-  &lt;/table&gt;
-&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</BODY_HTML>
-     </SMTG_TMPL_CONT>
-     <SMTG_TMPL_CONT>
-      <ID>ZET_DEMO</ID>
-      <VERSION>A</VERSION>
-      <LANGU>a</LANGU>
-      <SUBJECT>||Flight details and air fare||</SUBJECT>
-      <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
-
-  &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body style=&quot;background-color:gray&quot;&gt;
-  &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
-        &lt;tr&gt; &lt;td&gt;
-        &amp;SFLIGHT_TAB&amp;
-        &lt;/td&gt; &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;
-          &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
-
-          &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
-        &lt;/td&gt;
-      &lt;/tr&gt;
-
- &lt;/tbody&gt;
-   
-  &lt;/table&gt;
-&lt;br&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</BODY_HTML>
-     </SMTG_TMPL_CONT>
-    </CONTENT>
-   </SMTG>
-  </asx:values>
- </asx:abap>
+    <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+        <asx:values>
+            <SMTG>
+                <HEADER>
+                    <ID>ZET_DEMO</ID>
+                    <VERSION>A</VERSION>
+                    <IS_PREDELIVERED>X</IS_PREDELIVERED>
+                </HEADER>
+                <HEADER_T>
+                    <SMTG_TMPL_HDR_T>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>E</LANGU>
+                        <NAME>||Flight details and air fare||</NAME>
+                        <DESCRIPTION>||Flight details and air fare||</DESCRIPTION>
+                    </SMTG_TMPL_HDR_T>
+                </HEADER_T>
+                <CONTENT>
+                    <SMTG_TMPL_CONT>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>E</LANGU>
+                        <SUBJECT>||Flight details and air fare||</SUBJECT>
+                        <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+                            &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
+                            &lt;title&gt;&lt;/title&gt;
+                            &lt;/head&gt;
+                            &lt;body style=&quot;background-color:gray&quot;&gt;
+                            &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
+                            &lt;tbody&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt; &lt;td&gt;
+                            &amp;SFLIGHT_TAB&amp;
+                            &lt;/td&gt; &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                            &lt;/table&gt;
+                            &lt;br&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </BODY_HTML>
+                    </SMTG_TMPL_CONT>
+                    <SMTG_TMPL_CONT>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>W</LANGU>
+                        <SUBJECT>||Flight details and air fare||</SUBJECT>
+                        <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+                            &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
+                            &lt;title&gt;&lt;/title&gt;
+                            &lt;/head&gt;
+                            &lt;body style=&quot;background-color:gray&quot;&gt;
+                            &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
+                            &lt;tbody&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt; &lt;td&gt;
+                            &amp;SFLIGHT_TAB&amp;
+                            &lt;/td&gt; &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                            &lt;/table&gt;
+                            &lt;br&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </BODY_HTML>
+                    </SMTG_TMPL_CONT>
+                    <SMTG_TMPL_CONT>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>묩</LANGU>
+                        <SUBJECT>||Flight details and air fare||</SUBJECT>
+                        <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+                            &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
+                            &lt;title&gt;&lt;/title&gt;
+                            &lt;/head&gt;
+                            &lt;body style=&quot;background-color:gray&quot;&gt;
+                            &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
+                            &lt;tbody&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt; &lt;td&gt;
+                            &amp;SFLIGHT_TAB&amp;
+                            &lt;/td&gt; &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                            &lt;/table&gt;
+                            &lt;br&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </BODY_HTML>
+                    </SMTG_TMPL_CONT>
+                    <SMTG_TMPL_CONT>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>뱋</LANGU>
+                        <SUBJECT>||Flight details and air fare||</SUBJECT>
+                        <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+                            &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
+                            &lt;title&gt;&lt;/title&gt;
+                            &lt;/head&gt;
+                            &lt;body style=&quot;background-color:gray&quot;&gt;
+                            &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
+                            &lt;tbody&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt; &lt;td&gt;
+                            &amp;SFLIGHT_TAB&amp;
+                            &lt;/td&gt; &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                            &lt;/table&gt;
+                            &lt;br&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </BODY_HTML>
+                    </SMTG_TMPL_CONT>
+                    <SMTG_TMPL_CONT>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>Z</LANGU>
+                        <SUBJECT>||Flight details and air fare||</SUBJECT>
+                        <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+                            &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
+                            &lt;title&gt;&lt;/title&gt;
+                            &lt;/head&gt;
+                            &lt;body style=&quot;background-color:gray&quot;&gt;
+                            &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
+                            &lt;tbody&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt; &lt;td&gt;
+                            &amp;SFLIGHT_TAB&amp;
+                            &lt;/td&gt; &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                            &lt;/table&gt;
+                            &lt;br&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </BODY_HTML>
+                    </SMTG_TMPL_CONT>
+                    <SMTG_TMPL_CONT>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>7</LANGU>
+                        <SUBJECT>||Flight details and air fare||</SUBJECT>
+                        <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+                            &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
+                            &lt;title&gt;&lt;/title&gt;
+                            &lt;/head&gt;
+                            &lt;body style=&quot;background-color:gray&quot;&gt;
+                            &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
+                            &lt;tbody&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt; &lt;td&gt;
+                            &amp;SFLIGHT_TAB&amp;
+                            &lt;/td&gt; &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                            &lt;/table&gt;
+                            &lt;br&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </BODY_HTML>
+                    </SMTG_TMPL_CONT>
+                    <SMTG_TMPL_CONT>
+                        <ID>ZET_DEMO</ID>
+                        <VERSION>A</VERSION>
+                        <LANGU>a</LANGU>
+                        <SUBJECT>||Flight details and air fare||</SUBJECT>
+                        <BODY_HTML>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+                            &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;meta name=&quot;generator&quot; content=&quot;HTML Tidy for SAP R/3 (vers 25 March 2009), see www.w3.org&quot;&gt;
+                            &lt;title&gt;&lt;/title&gt;
+                            &lt;/head&gt;
+                            &lt;body style=&quot;background-color:gray&quot;&gt;
+                            &lt;table align=&quot;center&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; width=&quot;750&quot; bgcolor=&quot;white&quot; style=&quot;font-family:Arial; font-weight: bolder; font-size: 15px; letter-spacing: 0.025em; color:black; padding-right:20px; padding-left:20px&quot;&gt;
+                            &lt;tbody&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;Hello &amp;amp;USER_FIRST_NAME&amp;amp;!&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p&gt;We would like to inform you about Flight details and air fare.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt; &lt;td&gt;
+                            &amp;SFLIGHT_TAB&amp;
+                            &lt;/td&gt; &lt;/tr&gt;
+                            &lt;tr&gt;
+                            &lt;td&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;Thank you.&lt;/p&gt;
+                            &lt;p style=&quot;line-height:0.2&quot;&gt;TATA Air.&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;/tbody&gt;
+                            &lt;/table&gt;
+                            &lt;br&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </BODY_HTML>
+                    </SMTG_TMPL_CONT>
+                </CONTENT>
+            </SMTG>
+        </asx:values>
+    </asx:abap>
 </abapGit>

@@ -78,14 +78,12 @@ CLASS zcx_email IMPLEMENTATION.
       CLEAR ls_t100_key.
     ENDIF.
 
-    RAISE EXCEPTION TYPE zcx_email
-      EXPORTING
-        textid   = ls_t100_key
-        msgv1    = iv_msgv1
-        msgv2    = iv_msgv2
-        msgv3    = iv_msgv3
-        msgv4    = iv_msgv4
-        previous = ix_previous
-        longtext = iv_longtext.
+    RAISE EXCEPTION NEW zcx_email( textid   = ls_t100_key
+                                   msgv1    = iv_msgv1
+                                   msgv2    = iv_msgv2
+                                   msgv3    = iv_msgv3
+                                   msgv4    = iv_msgv4
+                                   previous = ix_previous
+                                   longtext = iv_longtext ).
   ENDMETHOD.
 ENDCLASS.
