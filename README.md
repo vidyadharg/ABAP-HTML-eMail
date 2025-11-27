@@ -118,6 +118,19 @@ TRY.
         placeholder_name  =  '&DAYS&'
         placeholder_value =  CONV #( lv_days ) ).
 
+
+**
+    "can pass multiple placeholders in itab
+         email->set_placeholder(
+            EXPORTING
+              placeholder_tab  = VALUE if_smtg_email_template=>ty_gt_data_key(
+               ( name = '&USER_FIRST_NAME&' value = 'User firstname' )
+               ( name = '&USER_ID&'         value = 'user_id' )
+               ( name = '&DAYS&'            value = lv_days )
+               ( name = '&EXPIRY_DT&'       value = |{ lv_expiry_dt DATE = ISO }| )
+                ) ).
+**
+
     email->set_subject_body_template(
       EXPORTING
         template_id = 'ZET_DEMO' "Email body from Email template
