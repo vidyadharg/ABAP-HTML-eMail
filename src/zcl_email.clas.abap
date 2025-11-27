@@ -3,72 +3,66 @@ CLASS zcl_email DEFINITION
   PUBLIC
   INHERITING FROM cl_bcs_message
   FINAL
-  CREATE PUBLIC.
+  CREATE PUBLIC .
 
   PUBLIC SECTION.
 
-    METHODS:
-      "! <p class="shorttext synchronized" lang="en">set email body from so10 text</p>
-      set_body_so10
-        IMPORTING
-          text_name TYPE tdobname
-          language  TYPE bcs_language DEFAULT sy-langu
-          doctype   TYPE bcs_doctype DEFAULT 'txt'
-          tdid      TYPE thead-tdid DEFAULT 'ST'
-          tdobject  TYPE thead-tdobject DEFAULT 'TEXT',
+    "! <p class="shorttext synchronized" lang="en">set email body from so10 text</p>
+    METHODS set_body_so10
+      IMPORTING
+        text_name TYPE tdobname
+        language  TYPE bcs_language DEFAULT sy-langu
+        doctype   TYPE bcs_doctype DEFAULT 'txt'
+        tdid      TYPE thead-tdid DEFAULT 'ST'
+        tdobject  TYPE thead-tdobject DEFAULT 'TEXT' .
+    "! <p class="shorttext synchronized" lang="en">set email subject from so10 text</p>
+    METHODS set_subject_so10
+      IMPORTING
+        text_name TYPE tdobname
+        language  TYPE bcs_language DEFAULT sy-langu
+        doctype   TYPE bcs_doctype DEFAULT 'txt'
+        tdid      TYPE thead-tdid DEFAULT 'ST'
+        tdobject  TYPE thead-tdobject DEFAULT 'TEXT' .
+    "! <p class="shorttext synchronized" lang="en">set email body and subject from email Template id</p>
+    METHODS set_subject_body_template
+      IMPORTING
+        template_id TYPE smtg_tmpl_id
+        language    TYPE bcs_language DEFAULT sy-langu
+        doctype     TYPE bcs_doctype DEFAULT 'txt' .
+    "! <p class="shorttext synchronized" lang="en">set placeholder</p>
+    METHODS set_placeholder
+      IMPORTING
+        placeholder_name  TYPE string OPTIONAL
+        placeholder_value TYPE string OPTIONAL
+        placeholder_tab   TYPE if_smtg_email_template=>ty_gt_data_key OPTIONAL .
+    "! <p class="shorttext synchronized" lang="en">Add recipient email id from SAP DL</p>
+    METHODS add_dl_recipients
+      IMPORTING
+        dlinam TYPE so_dli_nam
+        copy   TYPE bcs_copy OPTIONAL .
+    "! <p class="shorttext synchronized" lang="en">set Itab Placeholder</p>
+    METHODS set_placeholder_itab
+      IMPORTING
+        placeholder_name       TYPE string
+        VALUE(placeholder_itab) TYPE STANDARD TABLE .
+    "! <p class="shorttext synchronized" lang="en">add ZIP attachments</p>
+    METHODS add_zip_attachments
+      IMPORTING
+        i_zip_doctype     TYPE bcs_doctype DEFAULT 'zip'
+        i_zip_description TYPE bcs_description OPTIONAL
+        i_zip_filename    TYPE bcs_filename DEFAULT 'attach.zip'
+        i_codepage        TYPE bcs_codepage OPTIONAL
+        it_attachments    TYPE bcst_attachment
+      RAISING
+        zcx_email .
+    "! <p class="shorttext synchronized" lang="en">validate email id</p>
+    CLASS-METHODS is_emailid_valid
+      IMPORTING
+        emailid                TYPE ad_smtpadr
+      RETURNING
+        VALUE(is_emailid_valid) TYPE abap_bool .
 
-      "! <p class="shorttext synchronized" lang="en">set email subject from so10 text</p>
-      set_subject_so10
-        IMPORTING
-          text_name TYPE tdobname
-          language  TYPE bcs_language DEFAULT sy-langu
-          doctype   TYPE bcs_doctype DEFAULT 'txt'
-          tdid      TYPE thead-tdid DEFAULT 'ST'
-          tdobject  TYPE thead-tdobject DEFAULT 'TEXT',
 
-      "! <p class="shorttext synchronized" lang="en">set email body and subject from email Template id</p>
-      set_subject_body_template
-        IMPORTING
-          template_id TYPE smtg_tmpl_id
-          language    TYPE bcs_language DEFAULT sy-langu
-          doctype     TYPE bcs_doctype DEFAULT 'txt',
-
-      "! <p class="shorttext synchronized" lang="en">set placeholder</p>
-      set_placeholder
-        IMPORTING
-          placeholder_name  TYPE string
-          placeholder_value TYPE string,
-
-      "! <p class="shorttext synchronized" lang="en">Add recipient email id from SAP DL</p>
-      add_dl_recipients
-        IMPORTING
-          dlinam TYPE so_dli_nam
-          copy   TYPE bcs_copy OPTIONAL,
-
-      "! <p class="shorttext synchronized" lang="en">set Itab Placeholder</p>
-      set_placeholder_itab
-        IMPORTING
-          placeholder_name        TYPE string
-          VALUE(placeholder_itab) TYPE STANDARD TABLE,
-
-      "! <p class="shorttext synchronized" lang="en">add ZIP attachments</p>
-      add_zip_attachments
-        IMPORTING
-          i_zip_doctype     TYPE bcs_doctype DEFAULT 'zip'
-          i_zip_description TYPE bcs_description OPTIONAL
-          i_zip_filename    TYPE bcs_filename DEFAULT 'attach.zip'
-          i_codepage        TYPE bcs_codepage OPTIONAL
-          it_attachments    TYPE bcst_attachment
-        RAISING
-          zcx_email.
-
-    CLASS-METHODS:
-      "! <p class="shorttext synchronized" lang="en">validate email id</p>
-      is_emailid_valid
-        IMPORTING
-          emailid                 TYPE ad_smtpadr
-        RETURNING
-          VALUE(is_emailid_valid) TYPE abap_bool .
 
   PROTECTED SECTION.
   PRIVATE SECTION.
@@ -97,7 +91,9 @@ CLASS zcl_email DEFINITION
 
 ENDCLASS.
 
-CLASS zcl_email IMPLEMENTATION.
+
+
+CLASS ZCL_EMAIL IMPLEMENTATION.
 
   METHOD add_dl_recipients.
 
@@ -120,10 +116,9 @@ CLASS zcl_email IMPLEMENTATION.
         OTHERS                     = 5.
     IF sy-subrc = 0.
       LOOP AT li_dli INTO DATA(ls_dli).
-        add_recipient(
-            iv_address      = CONV #( ls_dli-member_adr )  " Communication Address (for INT, FAX, SMS, and so on)
-            iv_visible_name = CONV #( ls_dli-full_name )   " Display Name of an Address
-            iv_copy         = copy  ).                     " Copy Recipients (None, CC, BCC)
+        add_recipient( iv_address      = CONV #( ls_dli-member_adr )  " Communication Address (for INT, FAX, SMS, and so on)
+                       iv_visible_name = CONV #( ls_dli-full_name )   " Display Name of an Address
+                       iv_copy         = copy  ).                     " Copy Recipients (None, CC, BCC)
 
       ENDLOOP.
     ENDIF.
@@ -149,7 +144,9 @@ CLASS zcl_email IMPLEMENTATION.
 
                 lv_xstring =
                   cl_bcs_convert=>string_to_xstring( iv_string   = ls_attachments-contents_txt
-                                                     iv_codepage = CONV #( ls_attachments-codepage ) ). "'4103'
+                                                     iv_codepage = CONV #( COND #( WHEN ls_attachments-codepage IS NOT INITIAL
+                                                                                   THEN ls_attachments-codepage
+                                                                                   ELSE '' ) ) ). "'4103'
 
               ELSEIF ls_attachments-contents_bin IS NOT INITIAL..
                 lv_xstring = ls_attachments-contents_bin.
@@ -169,8 +166,8 @@ CLASS zcl_email IMPLEMENTATION.
 
         CATCH cx_bcs.
           "MESSAGE e445(so).
-          zcx_email=>raise_t100( iv_msgid    = 'SO'
-                                 iv_msgno    = 445 ).
+          zcx_email=>raise_excep( iv_msgid    = 'SO'
+                                  iv_msgno    = 445 ).
       ENDTRY.
 
       add_attachment( iv_doctype      = i_zip_doctype       " Document Type
@@ -198,21 +195,7 @@ CLASS zcl_email IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD is_emailid_valid.
-    DATA ls_address   TYPE sx_address.
-    ls_address-type = 'INT'.
-    ls_address-address = emailid.
-
-    CALL FUNCTION 'SX_INTERNET_ADDRESS_TO_NORMAL'
-      EXPORTING
-        address_unstruct    = ls_address
-      EXCEPTIONS
-        error_address_type  = 1
-        error_address       = 2
-        error_group_address = 3
-        OTHERS              = 4.
-    IF sy-subrc EQ 0.
-      is_emailid_valid = abap_true.
-    ENDIF.
+     is_emailid_valid = zcl_email_utility=>is_emailid_valid( emailid = emailid ).
   ENDMETHOD.
 
   METHOD read_so10_text.
@@ -307,11 +290,16 @@ CLASS zcl_email IMPLEMENTATION.
 
   ENDMETHOD.
 
-
   METHOD set_placeholder.
-    APPEND  VALUE #( name = placeholder_name
-                     value = placeholder_value )
-     TO gt_data_key.
+    IF placeholder_name IS NOT INITIAL.
+
+      APPEND  VALUE #( name = placeholder_name
+                       value = placeholder_value )
+       TO gt_data_key.
+    ENDIF.
+    IF placeholder_tab IS NOT INITIAL.
+      APPEND LINES OF placeholder_tab TO gt_data_key.
+    ENDIF.
   ENDMETHOD.
 
   METHOD set_placeholder_itab.
@@ -376,4 +364,5 @@ CLASS zcl_email IMPLEMENTATION.
                                               tdid      = tdid
                                               tdobject  = tdobject ) ).
   ENDMETHOD.
+
 ENDCLASS.

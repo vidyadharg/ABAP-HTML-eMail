@@ -9,7 +9,7 @@ CLASS zcl_itab_to_xls DEFINITION
 
     METHODS convert
       IMPORTING
-        tbl            TYPE ANY TABLE
+        value(tbl)     TYPE ANY TABLE
         alv_disvariant TYPE disvariant OPTIONAL
       RETURNING
         VALUE(ret)      TYPE xstring.
@@ -17,14 +17,10 @@ CLASS zcl_itab_to_xls DEFINITION
 
 ENDCLASS.
 
-
-
 CLASS zcl_itab_to_xls IMPLEMENTATION.
-
 
   METHOD constructor.
   ENDMETHOD.
-
 
   METHOD convert.
     DATA :
@@ -64,7 +60,7 @@ CLASS zcl_itab_to_xls IMPLEMENTATION.
 
     ENDIF.
 
-    ret = salv->to_xml( xml_type = if_salv_bs_xml=>c_type_excel_xml ).
+    ret = salv->to_xml( xml_type = if_salv_bs_xml=>C_TYPE_XLSX ). "c_type_excel_xml ).
 
   ENDMETHOD.
 ENDCLASS.

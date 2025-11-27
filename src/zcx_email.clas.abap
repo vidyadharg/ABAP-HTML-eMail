@@ -1,17 +1,28 @@
 CLASS zcx_email DEFINITION
   PUBLIC
   INHERITING FROM cx_static_check
-  CREATE PUBLIC .
+  CREATE PUBLIC.
 
   PUBLIC SECTION.
 
-    INTERFACES if_t100_message .
+    INTERFACES if_t100_message.
 
-    DATA msgv1 TYPE symsgv READ-ONLY .
-    DATA msgv2 TYPE symsgv READ-ONLY .
-    DATA msgv3 TYPE symsgv READ-ONLY .
-    DATA msgv4 TYPE symsgv READ-ONLY .
-    DATA mv_longtext TYPE string READ-ONLY .
+    CONSTANTS:
+      message_class TYPE sy-msgid VALUE 'ZMC_EMAIL' ##NO_TEXT,
+      BEGIN OF otfdata_is_empty,
+        msgid TYPE symsgid VALUE 'ZMC_EMAIL',
+        msgno TYPE symsgno VALUE '001',
+        attr1 TYPE scx_attrname VALUE 'MSGV1',
+        attr2 TYPE scx_attrname VALUE 'MSGV2',
+        attr3 TYPE scx_attrname VALUE 'MSGV3',
+        attr4 TYPE scx_attrname VALUE 'MSGV4',
+      END OF otfdata_is_empty.
+
+    DATA msgv1 TYPE symsgv READ-ONLY.
+    DATA msgv2 TYPE symsgv READ-ONLY.
+    DATA msgv3 TYPE symsgv READ-ONLY.
+    DATA msgv4 TYPE symsgv READ-ONLY.
+    DATA mv_longtext TYPE string READ-ONLY.
 
     METHODS constructor
       IMPORTING
@@ -21,8 +32,8 @@ CLASS zcx_email DEFINITION
         msgv2    TYPE symsgv OPTIONAL
         msgv3    TYPE symsgv OPTIONAL
         msgv4    TYPE symsgv OPTIONAL
-        longtext TYPE csequence OPTIONAL .
-    CLASS-METHODS raise_t100
+        longtext TYPE csequence OPTIONAL.
+    CLASS-METHODS raise_excep
       IMPORTING
         VALUE(iv_msgid) TYPE symsgid DEFAULT sy-msgid
         VALUE(iv_msgno) TYPE symsgno DEFAULT sy-msgno
@@ -33,7 +44,10 @@ CLASS zcx_email DEFINITION
         ix_previous     TYPE REF TO cx_root OPTIONAL
         iv_longtext     TYPE csequence OPTIONAL
       RAISING
-        zcx_email .
+        zcx_email.
+    METHODS if_message~get_text
+        REDEFINITION.
+
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
@@ -64,7 +78,7 @@ CLASS zcx_email IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD raise_t100.
+  METHOD raise_excep.
     DATA: ls_t100_key TYPE scx_t100key.
 
     ls_t100_key-msgid = iv_msgid.
@@ -78,12 +92,20 @@ CLASS zcx_email IMPLEMENTATION.
       CLEAR ls_t100_key.
     ENDIF.
 
-    RAISE EXCEPTION NEW zcx_email( textid   = ls_t100_key
-                                   msgv1    = iv_msgv1
-                                   msgv2    = iv_msgv2
-                                   msgv3    = iv_msgv3
-                                   msgv4    = iv_msgv4
-                                   previous = ix_previous
-                                   longtext = iv_longtext ).
+    RAISE EXCEPTION TYPE zcx_email
+      EXPORTING
+        textid   = ls_t100_key
+        msgv1    = iv_msgv1
+        msgv2    = iv_msgv2
+        msgv3    = iv_msgv3
+        msgv4    = iv_msgv4
+        previous = ix_previous
+        longtext = iv_longtext.
   ENDMETHOD.
+
+  METHOD if_message~get_text.
+     result = COND #( WHEN me->mv_longtext IS NOT INITIAL THEN me->mv_longtext
+                      ELSE super->if_message~get_text( ) ).
+  ENDMETHOD.
+
 ENDCLASS.

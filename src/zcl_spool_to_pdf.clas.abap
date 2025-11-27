@@ -7,7 +7,7 @@ CLASS zcl_spool_to_pdf DEFINITION
 
     METHODS constructor .
     METHODS convert
-      IMPORTING spoolid          TYPE rspoid
+      IMPORTING spoolid                 TYPE rspoid
       RETURNING VALUE(pdf_file_xstring) TYPE xstring
                 "pdf_file_size    TYPE i
       RAISING   zcx_email.
@@ -17,9 +17,7 @@ CLASS zcl_spool_to_pdf DEFINITION
 ENDCLASS.
 
 
-
 CLASS zcl_spool_to_pdf IMPLEMENTATION.
-
 
   METHOD constructor.
   ENDMETHOD.
@@ -30,7 +28,7 @@ CLASS zcl_spool_to_pdf IMPLEMENTATION.
     DATA bin_size TYPE i.
     DATA dummy    TYPE TABLE OF rspoattr.
 
-*   ------------ get attributes of spool request ---------------------
+    "get attributes of spool request
     CALL FUNCTION 'RSPO_GET_ATTRIBUTES_SPOOLJOB'
       EXPORTING
         rqident     = spoolid
@@ -42,12 +40,10 @@ CLASS zcl_spool_to_pdf IMPLEMENTATION.
         no_such_job = 1
         OTHERS      = 2.
     IF sy-subrc <> 0.
-      zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
-                                       iv_msgno    = 126
-                                       iv_msgv1    = CONV #( spoolid ) ).
+      zcx_email=>raise_excep( ).
     ENDIF.
 
-*   --- convert spool request into PDF, dependent on document type ---
+    "convert spool request into PDF, dependent on document type
     IF rq-rqdoctype = 'OTF' OR rq-rqdoctype = 'SMART'.
       CALL FUNCTION 'CONVERT_OTFSPOOLJOB_2_PDF'
         EXPORTING
@@ -72,10 +68,7 @@ CLASS zcl_spool_to_pdf IMPLEMENTATION.
           err_btcjob_close_failed  = 11
           OTHERS                   = 12.
       IF sy-subrc <> 0.
-        zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
-                                         iv_msgno    = 712
-                                         iv_msgv1    = CONV #( sy-subrc )
-                                         iv_msgv2    = CONV #( 'CONVERT_OTFSPOOLJOB_2_PDF' ) ).
+        zcx_email=>raise_excep( ).
       ENDIF.
     ELSEIF rq-rqdoctype = 'LIST'.
       CALL FUNCTION 'CONVERT_ABAPSPOOLJOB_2_PDF'
@@ -101,15 +94,12 @@ CLASS zcl_spool_to_pdf IMPLEMENTATION.
           err_btcjob_close_failed  = 11
           OTHERS                   = 12.
       IF sy-subrc <> 0.
-        zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
-                                         iv_msgno    = 712
-                                         iv_msgv1    = CONV #( sy-subrc )
-                                         iv_msgv2    = CONV #( 'CONVERT_OTFSPOOLJOB_2_PDF' ) ).
+        zcx_email=>raise_excep( ).
       ENDIF.
     ELSE.
-        zcx_email=>raise_t100( EXPORTING iv_msgid    = 'PO'
-                                         iv_msgno    = 789
-                                         iv_msgv1    = CONV #( rq-rqdoctype ) ).
+      zcx_email=>raise_excep( EXPORTING iv_msgid    = 'PO'
+                                        iv_msgno    = 789
+                                        iv_msgv1    = CONV #( rq-rqdoctype ) ).
 
     ENDIF.
 
