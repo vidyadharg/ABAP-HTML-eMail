@@ -116,42 +116,52 @@ CLASS zcl_email_bcs DEFINITION
       set_importance
         IMPORTING
           iv_importance TYPE bcs_importance OPTIONAL,
+
       set_sensitivity
         IMPORTING
           iv_sensitivity TYPE bcs_sensitivity OPTIONAL,
+
       set_requested_status
         IMPORTING
           VALUE(iv_requested_status) TYPE bcs_requested_status
         RAISING
           zcx_email,
+
       set_status_mail
         IMPORTING
           VALUE(iv_status_mail) TYPE bcs_status_mail
         RAISING
           zcx_email,
+
       set_language
         IMPORTING
           iv_language TYPE bcs_language OPTIONAL,
+
       set_disclosure
         IMPORTING
           VALUE(iv_disclosure) TYPE bcs_disclosure,
+
       set_sign
         IMPORTING
           VALUE(iv_sign) TYPE sap_bool
         RAISING
           zcx_email,
+
       set_update_task
         IMPORTING
           iv_update_task TYPE bcs_update_task,
+
       set_encrypt
         IMPORTING
                   VALUE(iv_encrypt) TYPE sap_bool
         RAISING   zcx_email,
+
       set_send_immediately
         IMPORTING
           VALUE(iv_immediately) TYPE bcs_immediately
         RAISING
           zcx_email,
+
       send
         RETURNING
           VALUE(rt_err_recipients) TYPE bcst_rec_status
@@ -162,11 +172,6 @@ CLASS zcl_email_bcs DEFINITION
         IMPORTING
           senddat TYPE soes-snddat
           sendtim TYPE soes-sndtim,
-
-      "! <p class="shorttext synchronized" lang="en">Replace placeholder than CDS</p>
-      replace_placeholder
-        IMPORTING replace_string TYPE string
-        RETURNING VALUE(result)  TYPE string,
 
       oid
         RETURNING
@@ -192,10 +197,16 @@ CLASS zcl_email_bcs DEFINITION
       mo_intern   TYPE REF TO cl_bcs_msg_intern,
       mo_cl_bcs   TYPE REF TO cl_bcs,
       gt_data_key TYPE if_smtg_email_template=>ty_gt_data_key.
+
     METHODS:
       set_main_doc_bcs
         RAISING
           zcx_email,
+
+      "! <p class="shorttext synchronized" lang="en">Replace placeholder than CDS</p>
+      replace_placeholder
+        IMPORTING replace_string TYPE string
+        RETURNING VALUE(result)  TYPE string,
 
       from_so10
         IMPORTING
@@ -221,15 +232,6 @@ CLASS zcl_email_bcs IMPLEMENTATION.
 
   METHOD set_subject.
     mo_intern->mv_subject = iv_subject.
-
-*    "subject
-*    TRY.
-*        mo_cl_bcs->set_message_subject( ip_subject = iv_subject ).
-*      CATCH cx_send_req_bcs INTO DATA(lx_send_req_bcs).
-*        zcx_email=>raise_excep( iv_msgid = lx_send_req_bcs->msgid
-*                                iv_msgno = lx_send_req_bcs->msgno ).
-*    ENDTRY.
-
   ENDMETHOD.
 
   METHOD set_subject_so10.
@@ -323,8 +325,9 @@ CLASS zcl_email_bcs IMPLEMENTATION.
     " read headers
     SELECT SINGLE cds_view FROM smtg_tmpl_hdr
     INTO @DATA(lv_cds_view)
-    WHERE id      EQ @template_id
-      AND version EQ 'A'. "GC_VERSION_ACTIVE
+    WHERE id      = @template_id AND
+          version = 'A'.
+
     IF sy-subrc EQ 0.
       IF lv_cds_view IS NOT INITIAL.
         DATA(lt_data_key) = gt_data_key.
@@ -465,11 +468,6 @@ CLASS zcl_email_bcs IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD add_recipient.
-*          iv_address      TYPE bcs_address
-*          iv_commtype     TYPE bcs_commtype DEFAULT 'INT'
-*          iv_visible_name TYPE bcs_visname OPTIONAL
-*          iv_copy         TYPE bcs_copy OPTIONAL
-
 *    DATA(lv_address) = condense( iv_address ).
 *    APPEND VALUE bcss_recipient( commtype    = iv_commtype
 *                                  address     = lv_address
@@ -479,8 +477,8 @@ CLASS zcl_email_bcs IMPLEMENTATION.
 *      TO mo_intern->mt_recipients.
 
     CASE iv_copy.
-      WHEN 'CC'.   DATA(lv_cc) = 'X'.
-      WHEN 'BC'.   DATA(lv_bcc) = 'X'.
+      WHEN zcl_email_utility=>gc_cc.  DATA(lv_cc) = 'X'.
+      WHEN zcl_email_utility=>gc_bcc. DATA(lv_bcc) = 'X'.
       WHEN OTHERS. "NO COPY
     ENDCASE.
 
@@ -488,11 +486,8 @@ CLASS zcl_email_bcs IMPLEMENTATION.
         mo_cl_bcs->add_recipient(
           i_recipient  = cl_cam_address_bcs=>create_internet_address( i_address_string = CONV #( condense( iv_address ) )
                                                                       i_address_name   = CONV #( iv_visible_name ) )
-          "I_EXPRESS type OS_BOOLEAN optional
-          i_copy       = lv_cc
-          i_blind_copy = lv_bcc ).
-
-
+                                                                      i_copy           = lv_cc
+                                                                      i_blind_copy     = lv_bcc ).
 
       CATCH  cx_address_bcs INTO DATA(lx_address_bcs).
 
@@ -555,10 +550,6 @@ CLASS zcl_email_bcs IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD set_main_doc.
-*          iv_contents_txt TYPE string OPTIONAL
-*          iv_contents_bin TYPE xstring OPTIONAL
-*          iv_doctype      TYPE bcs_doctype DEFAULT 'txt'
-*          iv_codepage     TYPE bcs_codepage OPTIONAL
 
     mo_intern->ms_main_doc = VALUE bcss_attachment( doctype      = iv_doctype
                                                     codepage     = iv_codepage
@@ -591,7 +582,6 @@ CLASS zcl_email_bcs IMPLEMENTATION.
       ELSEIF iv_contents_bin IS NOT INITIAL.
         lv_xstring = iv_contents_bin.
       ENDIF.
-
 
       APPEND VALUE #( doctype      = iv_doctype
                       description  = iv_description
@@ -736,15 +726,14 @@ CLASS zcl_email_bcs IMPLEMENTATION.
 
     TRY.
 
-        "Email body, attachments
+        "set Document - Email body , attachments and subject
         set_main_doc_bcs( ).
 
         "send email
-        DATA(sent_to_all) = mo_cl_bcs->send( i_with_error_screen = 'X' ).
+        DATA(sent_to_all) = mo_cl_bcs->send( ).
         COMMIT WORK.
 
       CATCH  cx_bcs_send INTO DATA(lx_bcs_send).
-
         zcx_email=>raise_excep( iv_msgid = lx_bcs_send->msgid
                                 iv_msgno = lx_bcs_send->msgno ).
 
@@ -774,24 +763,23 @@ CLASS zcl_email_bcs IMPLEMENTATION.
         "attachment
         LOOP AT mo_intern->mt_attachments INTO DATA(ls_attachments).
 
-* Add attachment to document
-* since the new excelfiles have an 4-character extension .xlsx but the attachment-type only holds 3 charactes .xls,
-* we have to specify the real filename via attachment header
-* Use attachment_type xls to have SAP display attachment with the excel-icon
+          " Add attachment to document
+          " since the new excelfiles have an 4-character extension .xlsx but the attachment-type only holds 3 charactes .xls,
+          " we have to specify the real filename via attachment header(i_attachment_header)
+          " Use attachment_type xls to have SAP display attachment with the excel-icon
 
           lo_document->add_attachment(
             i_attachment_type    = ls_attachments-doctype
             i_attachment_subject = CONV #( ls_attachments-filename )
             i_attachment_size    = CONV #( xstrlen( ls_attachments-contents_bin ) )
-            "I_ATTACHMENT_LANGUAGE  "i_att_content_txt    = cl_bcs_convert=>string_to_soli( ls_attachments-contents_txt )
             i_att_content_hex    = cl_bcs_convert=>xstring_to_solix( ls_attachments-contents_bin )
-            "IV_VSI_PROFILE
             i_attachment_header = VALUE soli_tab( (  |&SO_FILENAME={ zcl_email_utility=>file_get_extension( ls_attachments-filename ) }| ) )
              ).
         ENDLOOP.
 
         mo_cl_bcs->set_document( lo_document ).
-        "send subject
+
+        "set subject line that exceeds the 50-character limit
         mo_cl_bcs->set_message_subject( mo_intern->mv_subject ).
 
       CATCH cx_send_req_bcs INTO DATA(lx_send_req_bcs).

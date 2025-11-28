@@ -5,19 +5,22 @@ CLASS zcl_email_utility DEFINITION
 
   PUBLIC SECTION.
 
+    CONSTANTS gc_cc TYPE bcs_copy VALUE 'C'.                "#EC NOTEXT
+    CONSTANTS gc_bcc TYPE bcs_copy VALUE 'B'.               "#EC NOTEXT
+
     CLASS-METHODS:
-    "! <p class="shorttext synchronized" lang="en">validate email id</p>
-     is_emailid_valid
-      IMPORTING
-        emailid                 TYPE ad_smtpadr
-      RETURNING
-        VALUE(is_emailid_valid) TYPE abap_bool,
+      "! <p class="shorttext synchronized" lang="en">validate email id</p>
+      is_emailid_valid
+        IMPORTING
+          emailid                 TYPE ad_smtpadr
+        RETURNING
+          VALUE(is_emailid_valid) TYPE abap_bool,
 
       is_dl_shared
         IMPORTING dl_name            TYPE so_dli_nam
         RETURNING VALUE(r_shared_dl) TYPE so_text001,
 
-     file_get_extension
+      file_get_extension
         IMPORTING filename         TYPE string
                   uppercase        TYPE c DEFAULT 'X'
         RETURNING VALUE(extension) TYPE string.
