@@ -1,69 +1,66 @@
 "! <p class="shorttext synchronized" lang="en">Email</p>
-CLASS zcl_email DEFINITION
-  PUBLIC
-  INHERITING FROM cl_bcs_message
-  FINAL
-  CREATE PUBLIC .
+class ZCL_EMAIL definition
+  public
+  inheriting from CL_BCS_MESSAGE
+  final
+  create public .
 
-  PUBLIC SECTION.
+public section.
 
     "! <p class="shorttext synchronized" lang="en">set email body from so10 text</p>
-    METHODS set_body_so10
-      IMPORTING
-        text_name TYPE tdobname
-        language  TYPE bcs_language DEFAULT sy-langu
-        doctype   TYPE bcs_doctype DEFAULT 'txt'
-        tdid      TYPE thead-tdid DEFAULT 'ST'
-        tdobject  TYPE thead-tdobject DEFAULT 'TEXT' .
+  methods SET_BODY_SO10
+    importing
+      !TEXT_NAME type TDOBNAME
+      !LANGUAGE type BCS_LANGUAGE default SY-LANGU
+      !DOCTYPE type BCS_DOCTYPE default 'txt'
+      !TDID type THEAD-TDID default 'ST'
+      !TDOBJECT type THEAD-TDOBJECT default 'TEXT' .
     "! <p class="shorttext synchronized" lang="en">set email subject from so10 text</p>
-    METHODS set_subject_so10
-      IMPORTING
-        text_name TYPE tdobname
-        language  TYPE bcs_language DEFAULT sy-langu
-        doctype   TYPE bcs_doctype DEFAULT 'txt'
-        tdid      TYPE thead-tdid DEFAULT 'ST'
-        tdobject  TYPE thead-tdobject DEFAULT 'TEXT' .
+  methods SET_SUBJECT_SO10
+    importing
+      !TEXT_NAME type TDOBNAME
+      !LANGUAGE type BCS_LANGUAGE default SY-LANGU
+      !DOCTYPE type BCS_DOCTYPE default 'txt'
+      !TDID type THEAD-TDID default 'ST'
+      !TDOBJECT type THEAD-TDOBJECT default 'TEXT' .
     "! <p class="shorttext synchronized" lang="en">set email body and subject from email Template id</p>
-    METHODS set_subject_body_template
-      IMPORTING
-        template_id TYPE smtg_tmpl_id
-        language    TYPE bcs_language DEFAULT sy-langu
-        doctype     TYPE bcs_doctype DEFAULT 'txt' .
+  methods SET_SUBJECT_BODY_TEMPLATE
+    importing
+      !TEMPLATE_ID type SMTG_TMPL_ID
+      !LANGUAGE type BCS_LANGUAGE default SY-LANGU
+      !DOCTYPE type BCS_DOCTYPE default 'txt' .
     "! <p class="shorttext synchronized" lang="en">set placeholder</p>
-    METHODS set_placeholder
-      IMPORTING
-        placeholder_name  TYPE string OPTIONAL
-        placeholder_value TYPE string OPTIONAL
-        placeholder_tab   TYPE if_smtg_email_template=>ty_gt_data_key OPTIONAL .
+  methods SET_PLACEHOLDER
+    importing
+      !PLACEHOLDER_NAME type STRING optional
+      !PLACEHOLDER_VALUE type STRING optional
+      !PLACEHOLDER_TAB type IF_SMTG_EMAIL_TEMPLATE=>TY_GT_DATA_KEY optional .
     "! <p class="shorttext synchronized" lang="en">Add recipient email id from SAP DL</p>
-    METHODS add_dl_recipients
-      IMPORTING
-        dlinam TYPE so_dli_nam
-        copy   TYPE bcs_copy OPTIONAL .
+  methods ADD_DL_RECIPIENTS
+    importing
+      !DLINAM type SO_DLI_NAM
+      !COPY type BCS_COPY optional .
     "! <p class="shorttext synchronized" lang="en">set Itab Placeholder</p>
-    METHODS set_placeholder_itab
-      IMPORTING
-        placeholder_name       TYPE string
-        VALUE(placeholder_itab) TYPE STANDARD TABLE .
+  methods SET_PLACEHOLDER_ITAB
+    importing
+      !PLACEHOLDER_NAME type STRING
+      !PLACEHOLDER_ITAB type STANDARD TABLE .
     "! <p class="shorttext synchronized" lang="en">add ZIP attachments</p>
-    METHODS add_zip_attachments
-      IMPORTING
-        i_zip_doctype     TYPE bcs_doctype DEFAULT 'zip'
-        i_zip_description TYPE bcs_description OPTIONAL
-        i_zip_filename    TYPE bcs_filename DEFAULT 'attach.zip'
-        i_codepage        TYPE bcs_codepage OPTIONAL
-        it_attachments    TYPE bcst_attachment
-      RAISING
-        zcx_email .
+  methods ADD_ZIP_ATTACHMENTS
+    importing
+      !I_ZIP_DOCTYPE type BCS_DOCTYPE default 'zip'
+      !I_ZIP_DESCRIPTION type BCS_DESCRIPTION optional
+      !I_ZIP_FILENAME type BCS_FILENAME default 'attach.zip'
+      !I_CODEPAGE type BCS_CODEPAGE optional
+      !IT_ATTACHMENTS type BCST_ATTACHMENT
+    raising
+      ZCX_EMAIL .
     "! <p class="shorttext synchronized" lang="en">validate email id</p>
-    CLASS-METHODS is_emailid_valid
-      IMPORTING
-        emailid                TYPE ad_smtpadr
-      RETURNING
-        VALUE(is_emailid_valid) TYPE abap_bool .
-
-
-
+  class-methods IS_EMAILID_VALID
+    importing
+      !EMAILID type AD_SMTPADR
+    returning
+      value(IS_EMAILID_VALID) type ABAP_BOOL .
   PROTECTED SECTION.
   PRIVATE SECTION.
 
@@ -95,12 +92,13 @@ ENDCLASS.
 
 CLASS ZCL_EMAIL IMPLEMENTATION.
 
+
   METHOD add_dl_recipients.
 
     DATA :
       li_dli        TYPE TABLE OF sodlienti1.
 
-    DATA(lv_shared_dli) = is_dl_shared( dlinam ).
+    DATA(lv_shared_dli) = zcl_email_utility=>is_dl_shared( dlinam ).
 
     CALL FUNCTION 'SO_DLI_READ_API1'
       EXPORTING
@@ -124,6 +122,7 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
 
   METHOD add_zip_attachments.
 
@@ -167,7 +166,7 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
         CATCH cx_bcs.
           "MESSAGE e445(so).
           zcx_email=>raise_excep( iv_msgid    = 'SO'
-                                  iv_msgno    = 445 ).
+                                  iv_msgno    = |445| ).
       ENDTRY.
 
       add_attachment( iv_doctype      = i_zip_doctype       " Document Type
@@ -178,23 +177,14 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
+
   METHOD is_dl_shared.
-
-    SELECT SINGLE owntp, ownyr, ownno
-    FROM soid INTO @DATA(ls_soid)
-    WHERE objnam = @dl_name AND
-          dlitp EQ 'DLI'.
-
-    IF ls_soid IS INITIAL.
-      "shared DL
-      r_shared_dl = 'X'.
-    ELSE.
-      "Private DL
-      r_shared_dl = space.
-    ENDIF.
+    "backward compatibility
+    zcl_email_utility=>is_dl_shared( dl_name ).
   ENDMETHOD.
 
   METHOD is_emailid_valid.
+     "backward compatibility
      is_emailid_valid = zcl_email_utility=>is_emailid_valid( emailid = emailid ).
   ENDMETHOD.
 
@@ -269,12 +259,14 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
+
   METHOD replace_placeholder.
     result = replace_string.
     LOOP AT gt_data_key INTO DATA(ls_data_key).
       REPLACE ALL OCCURRENCES OF ls_data_key-name IN result WITH ls_data_key-value.
     ENDLOOP.
   ENDMETHOD.
+
 
   METHOD set_body_so10.
     "get Email body from so10 text.
@@ -290,6 +282,7 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD set_placeholder.
     IF placeholder_name IS NOT INITIAL.
 
@@ -302,6 +295,7 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
+
   METHOD set_placeholder_itab.
 
     APPEND  VALUE #( name = placeholder_name
@@ -309,6 +303,7 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
                      value = NEW zcl_itab_to_html(  )->convert( placeholder_itab ) )
      TO gt_data_key.
   ENDMETHOD.
+
 
   METHOD set_subject_body_template.
 
@@ -356,6 +351,7 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
+
   METHOD set_subject_so10.
     "get Email subject from so10 text.
     set_subject( iv_subject = read_so10_text( text_name = text_name
@@ -364,5 +360,4 @@ CLASS ZCL_EMAIL IMPLEMENTATION.
                                               tdid      = tdid
                                               tdobject  = tdobject ) ).
   ENDMETHOD.
-
 ENDCLASS.

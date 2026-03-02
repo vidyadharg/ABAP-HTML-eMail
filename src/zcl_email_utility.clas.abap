@@ -32,10 +32,11 @@ ENDCLASS.
 CLASS zcl_email_utility IMPLEMENTATION.
   METHOD is_dl_shared.
 
-    SELECT SINGLE owntp, ownyr, ownno
-    FROM soid INTO @DATA(ls_soid)
-    WHERE objnam = @dl_name AND
-          dlitp EQ 'DLI'.
+    SELECT owntp, ownyr, ownno, objnam UP TO 1 ROWS
+      FROM soid INTO @DATA(ls_soid)
+      WHERE objnam = @dl_name AND                    "#EC "#EC CI_NOFIRST
+            dlitp EQ 'DLI'.
+      ENDSELECT.
 
     IF ls_soid IS INITIAL.
       "shared DL

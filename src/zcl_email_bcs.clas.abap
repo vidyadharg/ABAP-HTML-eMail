@@ -82,8 +82,8 @@ CLASS zcl_email_bcs DEFINITION
 
       set_placeholder_itab
         IMPORTING
-          placeholder_name        TYPE string
-          VALUE(placeholder_itab) TYPE STANDARD TABLE,
+          placeholder_name TYPE string
+          placeholder_itab TYPE STANDARD TABLE,
 
       "! <p class="shorttext synchronized" lang="en">set email body and subject from email Template id</p>
       set_subject_body_template
@@ -302,7 +302,7 @@ CLASS zcl_email_bcs IMPLEMENTATION.
         CATCH cx_bcs.
           "MESSAGE e445(so).
           zcx_email=>raise_excep( iv_msgid    = 'SO'
-                                  iv_msgno    = 445 ).
+                                  iv_msgno    = |445| ).
       ENDTRY.
 
       add_attachment( iv_doctype      = i_zip_doctype       " Document Type
